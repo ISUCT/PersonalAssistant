@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var Datastore = require('nedb');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -38,12 +38,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('/test', (req: any, res: any) => {
-  res.send({
-      data: ['Test data!',
-          'Test data1', 'Test data2'],
-      date: new Date(),
-  });
+var db = new Datastore({ filename: './DB', autoload: true });
+var doc = { _id: 'id1', planet: 'Mars', system: 'solar', inhabited: false, satellites: ['Phobos', 'Deimos'] }
+db.insert(doc, function (err, newDoc) {   
 });
 
 module.exports = app;

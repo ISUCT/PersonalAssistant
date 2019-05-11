@@ -18,6 +18,10 @@
     "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
     "compile:lockfile": "node tasks/compile-lockfile.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ISUCT/PersonalAssistant.git"
+  },
   "devDependencies": {
     "eslint": "5.16.0",
     "execa": "1.0.0",
@@ -51,5 +55,8 @@
     "yarn.lock": [
       "git rm --cached"
     ]
+  },
+  "dependencies": {
+    "nedb": "^1.8.0"
   }
 }
