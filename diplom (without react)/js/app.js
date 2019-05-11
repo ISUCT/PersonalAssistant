@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const connect = require('camo').connect;
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
@@ -15,6 +16,12 @@ app.use("/", homeRouter);
 app.use(function (req, res, next) {
     res.status(404).send("Not Found")
 });
- 
-app.listen(3000);
-console.log("I'm listening");
+
+var database;
+var uri = 'nedb://./BD';
+connect(uri).then(function(db) {
+    database = db;
+    app.listen(3000, function(){
+        console.log("Сервер ожидает подключения...");
+    })
+})

@@ -1,15 +1,13 @@
 const users = [];
- 
-module.exports= class User{
- 
-    constructor(name, age){
-        this.name = name;
-        this.age = age;
-    }
-    save(){
-        users.push(this);
-    }
-    static getAll(){
-        return users;
+const Datastore = require('nedb');
+const connect = require('camo').connect;
+const Document = require('camo').Document;
+
+class UserScheme extends Document {
+    constructor() {
+        super();
+        this.name = String;
+        this.age = Number;
     }
 }
+module.exports = UserScheme;
